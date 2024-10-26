@@ -1,23 +1,25 @@
+
+
 import java.util.LinkedList;
 import java.util.Scanner;
-public class ObjPizza {
-    
-    String TipoPizza;
-    String Tamaño;
+public class ObjVehiculo {
+    String Marca;
+    String Tipo;
+    String Color;
     Double Precio;
-    int cantidadPorciones;
+    
     Scanner sc = new Scanner(System.in);
-    public String getTipoPizza() {
-        return TipoPizza;
+    public String getTipo() {
+        return Tipo;
     }
-    public void setTipoPizza(String tipoPizza) {
-        TipoPizza = tipoPizza;
+    public void setTipo(String tipo) {
+        Tipo = tipo;
     }
-    public String getTamaño() {
-        return Tamaño;
+    public String getMarca() {
+        return Marca;
     }
-    public void setTamaño(String tamaño) {
-        Tamaño = tamaño;
+    public void setMarca(String marca) {
+        Marca = marca;
     }
     public Double getPrecio() {
         return Precio;
@@ -25,73 +27,60 @@ public class ObjPizza {
     public void setPrecio(Double precio) {
         Precio = precio;
     }
-    public int getCantidadPorciones() {
-        return cantidadPorciones;
+    public String getColor() {
+        return Color;
     }
-    public void setCantidadPorciones(int cantidadPorciones) {
-        this.cantidadPorciones = cantidadPorciones;
+    public void setColor(String color) {
+        Color = color;
     }
-    public LinkedList<ObjPizza> LlenarRegistro(LinkedList<ObjPizza> Lista){
-        boolean continuar = true;
-        int opt = 0;
-        while (continuar) {
-            ObjPizza obj = new ObjPizza();
-            System.out.println("Ingrese el tipo de pizza");
-            obj.setTipoPizza(sc.next());
-            System.out.println("Ingrese el tamaño");
-            obj.setTamaño(sc.next());
-            System.out.println("Ingrese el precio");
-            obj.setPrecio(sc.nextDouble());
-            System.out.println("Ingrese las porciones");
-            obj.setCantidadPorciones(sc.nextInt());
-            Lista.add(obj);
+    public LinkedList<ObjVehiculo> LlenarRegistro(LinkedList<ObjVehiculo> Lista){
+        boolean flag = true;
+        int opcion = 0;
+        while (flag) {
+            ObjVehiculo venta = new ObjVehiculo();
+            System.out.println("Ingrese el tipo de vehículo que desea:");
+            venta.setTipo(sc.next());
+            System.out.println("Ingrese la marca del vehículo:");
+            venta.setMarca(sc.next());
+            System.out.println("¿De qué color desea su vehículo?:");
+            venta.setColor(sc.next());
+            System.out.println("Ingrese el precio del vehículo:");
+            venta.setPrecio(sc.nextDouble());
+            Lista.add(venta);
             System.out.println("¿Desea continuar?"+"\n1: Sí"+"\n2: No");
-            while (!sc.hasNextInt()){
-                System.out.println("Por favor ingrese un número");
-                sc.next();
-            }
-            opt = sc.nextInt();
-            if (opt ==2 ){
-                continuar = false;
+           
+            opcion = sc.nextInt();
+            if (opcion == 2 ){
+                flag = false;
             }
         }
         return Lista;
     }
-    public void Mostrar(LinkedList<ObjPizza> Lista){
+    public void Mostrar(LinkedList<ObjVehiculo> Lista){
        
-        for (ObjPizza obj : Lista){
-            System.out.println("El Tipo de pizza es: " + obj.getTipoPizza()+"\n"+
-                               "El Tamaño es: " + obj.getTamaño()+"\n"+
-                               "El Precio: " + obj.getPrecio()+"\n"+
-                               "La cantidad de porciones es:" + obj.getCantidadPorciones());
+        for (ObjVehiculo venta : Lista){
+            System.out.println("El Tipo de vehículo es: " + venta.getTipo() +"\n"+
+                               "La marca de su "+ venta.getTipo() +" es: " + venta.getMarca()+"\n"+
+                               "El color de su "+ venta.getTipo() +" es: " + venta.getColor()+"\n"+
+                               "El precio de su vehículo es:" + venta.getPrecio()+ "\n");
             
         }
     
 }
 
-public ObjPizza Buscarregistro(String nombre, LinkedList<ObjPizza> Lista)
+public ObjVehiculo Buscarregistro(String tip, LinkedList<ObjVehiculo> Lista)
 {
-    ObjPizza objResult = new ObjPizza();
-    for (ObjPizza obj : Lista) {
-        if(obj.getTipoPizza().equalsIgnoreCase(nombre)){
-            objResult.setTipoPizza(nombre);
-            objResult.setTamaño(obj.getTamaño());
-            objResult.setPrecio(obj.getPrecio());
-            objResult.setCantidadPorciones(obj.getCantidadPorciones());
+    ObjVehiculo consulta = new ObjVehiculo();
+    for (ObjVehiculo venta : Lista) {
+        if(venta.getTipo().equalsIgnoreCase(tip)){
+            consulta.setTipo(tip);
+            consulta.setMarca(venta.getMarca());
+            consulta.setColor(venta.getColor());
+            consulta.setPrecio(venta.getPrecio());
         }
     }
-    return objResult;
+    return consulta;
 }
-public int LLenarPorciones(){
-    
-    System.out.println("Seleccione el tamaño"+"\n"+"\n1: Personal"+"\n2: Mediana"+"\n3: Grande"+"\n4: Familiar");
-    int sele = sc.nextInt();
-    switch (sele){
-        case 1:
-            setCantidadPorciones(4);
-        break;
-    }
 
-}
         
 }
